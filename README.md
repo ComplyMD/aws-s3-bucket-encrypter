@@ -11,4 +11,4 @@
         -c, --cipher NAME                Method with which the objects will encrypted. Accepts aws:kms or AES256. Defaults to AES256
         -v, --verbose                    Output more information. Useful for debugging or if you want to be sure things are actually working
 
-Your AWS credentials are not required as arguments because the SDK will look in the credentials file or environment variables, as described (Here)[http://docs.aws.amazon.com/sdk-for-ruby/v2/developer-guide/setup-config.html#setting-aws-credentials]. If you do not have these set, you must pass them as arguments.
+Your AWS credentials are not required as arguments because the SDK will look in the credentials file or environment variables, as described [Here](http://docs.aws.amazon.com/sdk-for-ruby/v2/developer-guide/setup-config.html#setting-aws-credentials). If you do not have these set, you must pass them as arguments.
