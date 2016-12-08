@@ -13,7 +13,7 @@ require 'optparse'
 
 def parse_options
   options = {}
-  OptionParser.new do |opts|
+  opt_parse = OptionParser.new do |opts|
     opts.banner = "Usage: bucket_encrypter.rb [options]"
     opts.on('-b', '--bucket NAME', 'REQUIRED - Name of the bucket to encrypt the contents of') { |v| options[:bucket] = v }
     opts.on('-r', '--region NAME', 'REQUIRED - Region in which the bucket to be encrypted is located') { |v| options[:region] = v }
@@ -22,14 +22,16 @@ def parse_options
     opts.on('-n', '--batch-size NUMBER', 'Size of batches to retrieve from bucket. Defaults to 100') { |v| options[:batch_size] = v }
     opts.on('-c', '--cipher NAME', 'Method with which the objects will encrypted. Accepts aws:kms or AES256. Defaults to AES256') { |v| options[:cipher] = v }
     opts.on('-v', '--verbose', 'Output more information. Useful for debugging or if you want to be sure things are actually working') { |v| options[:verbose] = true }
-    if options[:bucket].nil? || options[:region].nil?
-      puts opts
-      exit 1
-    end
-  end.parse!
+  end
+
+  opt_parse.parse!
 
   options[:batch_size] = 100 if options[:batch_size].nil?
   options[:cipher] = "AES256" if options[:cipher].nil?
+  if options[:bucket].nil? || options[:region].nil?
+    puts opt_parse
+    exit 1
+  end
   options
 end
 
